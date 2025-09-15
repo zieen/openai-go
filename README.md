@@ -149,6 +149,64 @@ _ = acc.Choices[0].Message.Content
 </details>
 
 <details>
+<summary>Reasoning content</summary>
+
+When using reasoning models like `o1-preview` or `o1-mini`, you can access the model's internal reasoning process through the `reasoning_content` field:
+
+```go
+completion, err := client.Chat.Completions.New(ctx, openai.ChatCompletionNewParams{
+	Messages: []openai.ChatCompletionMessageParamUnion{
+		openai.UserMessage("Solve this step by step: What is 2+2*3?"),
+	},
+	Model: openai.ChatModelO1Preview,
+})
+
+if err != nil {
+	panic(err.Error())
+}
+
+// Access the reasoning content (thinking process)
+if completion.Choices[0].Message.JSON.ReasoningContent.Valid() {
+	fmt.Println("Model's reasoning:")
+	fmt.Println(completion.Choices[0].Message.ReasoningContent)
+}
+
+// Access the final answer
+fmt.Println("Final answer:")
+fmt.Println(completion.Choices[0].Message.Content)
+```
+
+For streaming responses, reasoning content is available in the delta:
+
+```go
+stream := client.Chat.Completions.NewStreaming(ctx, openai.ChatCompletionNewParams{
+	Messages: []openai.ChatCompletionMessageParamUnion{
+		openai.UserMessage("Think through this problem step by step"),
+	},
+	Model: openai.ChatModelO1Preview,
+})
+
+for stream.Next() {
+	chunk := stream.Current()
+	if len(chunk.Choices) > 0 {
+		delta := chunk.Choices[0].Delta
+
+		// Reasoning content chunks
+		if delta.ReasoningContent != "" {
+			fmt.Print("Reasoning: ", delta.ReasoningContent)
+		}
+
+		// Final answer chunks
+		if delta.Content != "" {
+			fmt.Print("Answer: ", delta.Content)
+		}
+	}
+}
+```
+
+</details>
+
+<details>
 <summary>Tool calling</summary>
 
 ```go
