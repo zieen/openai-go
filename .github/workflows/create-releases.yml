@@ -9,7 +9,7 @@ on:
 jobs:
   release:
     name: release
-    if: github.ref == 'refs/heads/main' && github.repository == 'openai/openai-go'
+    if: github.ref == 'refs/heads/main' && github.repository == 'zieen/openai-go'
     runs-on: ubuntu-latest
     environment: publish
 
@@ -27,4 +27,4 @@ jobs:
         run: |
           # x-release-please-start-version
           version=$(jq -r '. | to_entries[0] | .value' .release-please-manifest.json)
-          curl -X POST https://pkg.go.dev/fetch/github.com/openai/openai-go/v2@v${version}
+          curl -X POST https://pkg.go.dev/fetch/github.com/zieen/openai-go@v${version}

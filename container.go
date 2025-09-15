@@ -9,13 +9,13 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/openai/openai-go/v2/internal/apijson"
-	"github.com/openai/openai-go/v2/internal/apiquery"
-	"github.com/openai/openai-go/v2/internal/requestconfig"
-	"github.com/openai/openai-go/v2/option"
-	"github.com/openai/openai-go/v2/packages/pagination"
-	"github.com/openai/openai-go/v2/packages/param"
-	"github.com/openai/openai-go/v2/packages/respjson"
+	"github.com/zieen/openai-go/internal/apijson"
+	"github.com/zieen/openai-go/internal/apiquery"
+	"github.com/zieen/openai-go/internal/requestconfig"
+	"github.com/zieen/openai-go/option"
+	"github.com/zieen/openai-go/packages/pagination"
+	"github.com/zieen/openai-go/packages/param"
+	"github.com/zieen/openai-go/packages/respjson"
 )
 
 // ContainerService contains methods and other services that help with interacting

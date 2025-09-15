@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/openai/openai-go/v2/packages/param"
+	"github.com/zieen/openai-go/packages/param"
 )
 
 type Struct struct {

@@ -1,8 +1,8 @@
 package sentinel_test
 
 import (
-	"github.com/openai/openai-go/v2/internal/encoding/json/sentinel"
-	"github.com/openai/openai-go/v2/packages/param"
+	"github.com/zieen/openai-go/internal/encoding/json/sentinel"
+	"github.com/zieen/openai-go/packages/param"
 	"reflect"
 	"slices"
 	"testing"

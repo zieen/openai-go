@@ -1,6 +1,6 @@
-module github.com/openai/openai-go/v2
+module github.com/zieen/openai-go
 
-go 1.21
+go 1.25.1
 
 require (
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.17.0

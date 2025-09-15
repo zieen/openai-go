@@ -2,7 +2,7 @@
 
 <!-- x-release-please-start-version -->
 
-<a href="https://pkg.go.dev/github.com/openai/openai-go/v2"><img src="https://pkg.go.dev/badge/github.com/openai/openai-go.svg" alt="Go Reference"></a>
+<a href="https://pkg.go.dev/github.com/zieen/openai-go"><img src="https://pkg.go.dev/badge/github.com/zieen/openai-go.svg" alt="Go Reference"></a>
 
 <!-- x-release-please-end -->
 
@@ -19,7 +19,7 @@ from applications written in Go.
 
 ```go
 import (
-	"github.com/openai/openai-go/v2" // imported as openai
+	"github.com/zieen/openai-go" // imported as openai
 )
 ```
 
@@ -30,14 +30,14 @@ Or to pin the version:
 <!-- x-release-please-start-version -->
 
 ```sh
-go get -u 'github.com/openai/openai-go/v2@v2.4.2'
+go get -u 'github.com/zieen/openai-go'
 ```
 
 <!-- x-release-please-end -->
 
 ## Requirements
 
-This library requires Go 1.21+.
+This library requires Go 1.25.1+.
 
 ## Usage
 
@@ -50,9 +50,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/option"
-	"github.com/openai/openai-go/v2/shared"
+	"github.com/zieen/openai-go"
+	"github.com/zieen/openai-go/option"
+	"github.com/zieen/openai-go/shared"
 )
 
 func main() {
@@ -564,7 +564,7 @@ client.Chat.Completions.New(context.TODO(), ...,
 
 The request option `option.WithDebugLog(nil)` may be helpful while debugging.
 
-See the [full list of request options](https://pkg.go.dev/github.com/openai/openai-go/option).
+See the [full list of request options](https://pkg.go.dev/github.com/zieen/openai-go/option).
 
 ### Pagination
 
@@ -715,9 +715,9 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/option"
-	"github.com/openai/openai-go/v2/webhooks"
+	"github.com/zieen/openai-go"
+	"github.com/zieen/openai-go/option"
+	"github.com/zieen/openai-go/webhooks"
 )
 
 func main() {
@@ -775,8 +775,8 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/option"
+	"github.com/zieen/openai-go"
+	"github.com/zieen/openai-go/option"
 )
 
 func main() {
@@ -966,8 +966,8 @@ package main
 
 import (
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/azure"
+	"github.com/zieen/openai-go"
+	"github.com/zieen/openai-go/azure"
 )
 
 func main() {

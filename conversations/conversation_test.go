@@ -8,12 +8,12 @@ import (
 	"os"
 	"testing"
 
-	"github.com/openai/openai-go/v2"
-	"github.com/openai/openai-go/v2/conversations"
-	"github.com/openai/openai-go/v2/internal/testutil"
-	"github.com/openai/openai-go/v2/option"
-	"github.com/openai/openai-go/v2/responses"
-	"github.com/openai/openai-go/v2/shared"
+	"github.com/zieen/openai-go"
+	"github.com/zieen/openai-go/conversations"
+	"github.com/zieen/openai-go/internal/testutil"
+	"github.com/zieen/openai-go/option"
+	"github.com/zieen/openai-go/responses"
+	"github.com/zieen/openai-go/shared"
 )
 
 func TestConversationNewWithOptionalParams(t *testing.T) {

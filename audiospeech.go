@@ -6,10 +6,10 @@ import (
 	"context"
 	"net/http"
 
-	"github.com/openai/openai-go/v2/internal/apijson"
-	"github.com/openai/openai-go/v2/internal/requestconfig"
-	"github.com/openai/openai-go/v2/option"
-	"github.com/openai/openai-go/v2/packages/param"
+	"github.com/zieen/openai-go/internal/apijson"
+	"github.com/zieen/openai-go/internal/requestconfig"
+	"github.com/zieen/openai-go/option"
+	"github.com/zieen/openai-go/packages/param"
 )
 
 // AudioSpeechService contains methods and other services that help with
