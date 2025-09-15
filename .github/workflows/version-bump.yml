@@ -1,0 +1,64 @@
+name: Auto Version Bump
+
+on:
+  workflow_dispatch: # Manual trigger
+  push:
+    branches:
+      - main # Or your default branch
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed for pushing tags and releases
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Important for git history
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          # Get current version tag (or set to v0.0.0 if none exists)
+          CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Current version: $CURRENT_VERSION"
+
+          # Parse version numbers
+          if [[ $CURRENT_VERSION =~ ^v([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+            MAJOR=${BASH_REMATCH[1]}
+            MINOR=${BASH_REMATCH[2]}
+            PATCH=${BASH_REMATCH[3]}
+            
+            # Increment patch version
+            PATCH=$((PATCH + 1))
+            
+            NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
+            echo "New version: $NEW_VERSION"
+            echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "Current version tag does not match semantic versioning format (vX.Y.Z). Defaulting to v0.0.1."
+            NEW_VERSION="v0.0.1"
+            echo "New version: $NEW_VERSION"
+            echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create tag
+        run: |
+          git tag ${{ steps.bump_version.outputs.new_version }}
+          git push origin ${{ steps.bump_version.outputs.new_version }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump_version.outputs.new_version }}
+          name: Release ${{ steps.bump_version.outputs.new_version }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
